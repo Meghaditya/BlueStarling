@@ -70,16 +70,16 @@ def get_all_favorites(twitter, screen_name_text):
 	since_id_val = -1
 
 	while True:
-		print('max_id = ' , max_id_val)
+		# debug - print('max_id = ' , max_id_val)
 		if (max_id_val > 0) :
 			favorites = twitter.get_favorites(screen_name=screen_name_text, count=200, max_id=max_id_val)
 		else :
 			favorites = twitter.get_favorites(screen_name=screen_name_text, count=200)
 			if (len(favorites) > 0) :
 				since_id_val = favorites[0]['id']
-				print('since_id = ' , since_id_val)
+				# debug - print('since_id = ' , since_id_val)
 
-		print('len(favorites) : ', len(favorites))	
+		# debug - print('len(favorites) : ', len(favorites))	
 		if (len(favorites) == 0) :
 			break
 
