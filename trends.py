@@ -22,19 +22,19 @@ def get_places(twitter, country_names = [], place_names = []):
 		if ((len(country_names)>0) and \
 			(place['country'] in country_names)) :
 			places_of_interest += 1
-			print('Added to places ', place['name'])
+			#print('Added to places ', place['name'])
 			places_list.append(place)
 		
 		if ((len(place_names)>0) and \
 			  (place['name'] in place_names)) :
 			places_of_interest += 1
-			print('Added to places ', place['name'])
+			#print('Added to places ', place['name'])
 			places_list.append(place)
 		
 		if ((not country_names) and \
 			(not place_names)) :
 			places_of_interest += 1
-			print('Added to places ', place['name'])
+			#print('Added to places ', place['name'])
 			places_list.append(place)
 
 	return places_list
@@ -64,7 +64,7 @@ def get_trends(twitter, places_list):
 	for place in places_list:
 
 		trends_for_place = twitter.get_place_trends(id=place['woeid'])
-		print('Got the trends for ', place['name'])
+		#print('Got the trends for ', place['name'])
 		
 		for trend in trends_for_place[0]['trends']:
 		
