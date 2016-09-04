@@ -60,10 +60,13 @@ def get_trends_from_places(twitter, country_names = [], place_names = []):
 def get_trends(twitter, places_list):
 
 	trends_of_ineterest = dict([])
+	places_list_len = len(places_list)
+	rate_limit_counter = places_list_len
 
 	for place in places_list:
 
 		trends_for_place = twitter.get_place_trends(id=place['woeid'])
+		rate_limit_counter -= 1
 		#print('Got the trends for ', place['name'])
 		
 		for trend in trends_for_place[0]['trends']:
@@ -74,7 +77,10 @@ def get_trends(twitter, places_list):
 		
 			else:
 				trends_of_ineterest[trend['name']] = 1
-		time.sleep(60)
+
+		if (rate_limit_counter<15 and \
+			(places_list_len-rate_limit_counter)%15 == 0):
+			time.sleep(60)
 
 	return reversed(\
 		sorted(trends_of_ineterest.items(), \
