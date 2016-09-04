@@ -1,18 +1,15 @@
 import time
-from twython import Twython, TwythonError
-from utils import fetch_twitter_credential
+from twython import TwythonError
 
 # A simple method to iteratively post tweets by searching with a given topic.
 #
+# twitter - the Twython object
 # topic - the search query for finding tweets
 # iteration - the number of times the cycle would go on
 # en_only - should retweet tweets in english
 # time_delay - the time delay between each re-tweet
 
-def simple_iterative_retweet(topic, iteration=5, en_only=True, time_delay=1):
-	(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET) = fetch_twitter_credential()
-	twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-	
+def simple_iterative_retweet(twitter, topic, iteration=5, en_only=True, time_delay=1):
 	try:
 	    search_results = twitter.search(q=topic, count=iteration)
 	except TwythonError as e:
