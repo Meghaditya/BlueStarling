@@ -6,9 +6,9 @@ from search import simple_search
 
 def auto_tweet_dynamic_trend(twitter, trends):
 	TOTAL_TRENDS = 3
-	TOTAL_TWEETS = 5
-	TWEET_INTERVAL_LOWER_BOUND = 1*60
-	TWEET_INTERVAL_UPPER_BOUND = 2*60
+	TOTAL_TWEETS = 3
+	TWEET_INTERVAL_LOWER_BOUND = 15*60
+	TWEET_INTERVAL_UPPER_BOUND = 20*60
 	while True:
 		print('Starting new iteration')
 		print(strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()))
