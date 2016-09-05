@@ -24,8 +24,6 @@ def simple_search(twitter, topic, total=100, en_only=True):
 					retweet_count, \
 					favorite_count, \
 					text)] = retweet_count+favorite_count
-		else :
-			print('lang is =', tweet['lang'], ' -- skipping.')
 
 	return reversed(\
 		sorted(search_results_dict.items(), \

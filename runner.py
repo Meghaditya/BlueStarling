@@ -8,6 +8,7 @@ from simple_retweet import simple_iterative_retweet
 from profile_cleaner import reset_profile
 from trends import get_trends_from_places
 from search import simple_search
+from twit_machine import auto_tweet_dynamic_trend
 
 (APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET) = fetch_twitter_credential()
 twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
@@ -44,28 +45,7 @@ elif mode == 4:
 	for result in search_results:
 		print(result)
 elif mode == 5:
-	while True:
-		print('Starting new iteration')
-		print(strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()))
-		print('-------------')
-		trends = get_trends_from_places(twitter, ['Singapore'], [])
-		i = 0
-		for trend in trends:
-			if (i>2):
-				break
-			i += 1
-			j = 0
-			search_results = simple_search(twitter, trend[0])
-			for search_result in search_results:
-				if (j>2):
-					break
-				j += 1
-				text=search_result[0][3]
-				if (len(text) <= 140) :
-					twitter.update_status(status=text)
-					print('posted status - ', text)
-				wait_time = random.randint(15*60, 20*60)
-				time.sleep(wait_time)
-		print('-------------')
+	auto_tweet_dynamic_trend(twitter, \
+		get_trends_from_places(twitter, ['Singapore'], []))
 else:
 	print('wrong input')
