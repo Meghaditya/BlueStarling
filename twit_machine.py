@@ -45,8 +45,8 @@ def auto_tweet_dynamic_trend(twitter, trends):
 				if (j>TOTAL_TWEETS):
 					break
 				j += 1
-				retweet(search_result)
-				follow(search_result)
+				retweet(twitter, search_result)
+				follow(twitter, search_result)
 				wait_time = random.randint(TWEET_INTERVAL_LOWER_BOUND, TWEET_INTERVAL_UPPER_BOUND)
 				time.sleep(wait_time)
 		print('-------------')
