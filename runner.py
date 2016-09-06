@@ -8,7 +8,10 @@ from simple_retweet import simple_iterative_retweet
 from profile_cleaner import reset_profile
 from trends import get_trends_from_places
 from search import simple_search
+from twit_machine import retweet
+from twit_machine import follow
 from twit_machine import auto_tweet_dynamic_trend
+from google_trends import get_top_trends
 
 (APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET) = fetch_twitter_credential()
 twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
@@ -19,6 +22,8 @@ mode_text = 'Enter mode :\n' + \
 			'3. Get Hourly Trends in Any Country\n' + \
 			'4. Get 100 tweets about topic\n' + \
 			'5. Start Dynamic Trend TwitMachine\n' + \
+			'6. Start Google Trend TwitMachine\n' + \
+			'7. Test simple retweet and follow\n' + \
 			'Your Choice : '
 
 mode = int(custom_prompt(mode_text))
@@ -26,9 +31,11 @@ mode = int(custom_prompt(mode_text))
 if mode == 1:
 	topic = custom_prompt('Enter the topic : ')
 	simple_iterative_retweet(twitter, topic)
+
 elif mode == 2:
 	screen_name = custom_prompt('Enter screen name : ')
 	reset_profile(twitter, screen_name)
+
 elif mode == 3:
 	country_name = custom_prompt('Enter country name : ')
 	while True:
@@ -40,13 +47,29 @@ elif mode == 3:
 			print(trend)
 		print('-------------')
 		time.sleep(60*60)
+
 elif mode == 4:
 	topic = custom_prompt('Enter the topic : ')
 	search_results = simple_search(twitter, topic)
 	for result in search_results:
 		print(result)
+
 elif mode == 5:
+	c_name_5 = custom_prompt('Enter country name:')
 	auto_tweet_dynamic_trend(twitter, \
-		get_trends_from_places(twitter, ['Singapore'], []))
+		get_trends_from_places(twitter, [c_name_5], []))
+
+elif mode == 6:
+	c_name_6 = custom_prompt('Enter country name: ')
+	trends = get_top_trends(c_name_6)
+	print(trends)
+
+elif mode == 7:
+	search_topic_7 = custom_prompt('Enter search topic: ')
+	search_results_7 = simple_search(twitter, search_topic_7, 1)
+	for s_7 in search_results_7:
+		follow(twitter, s_7)
+		retweet(twitter, s_7)
+
 else:
 	print('wrong input')

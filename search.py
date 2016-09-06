@@ -12,9 +12,11 @@ def simple_search(twitter, topic, total=100, en_only=True):
 	for tweet in search_results['statuses']:
 		if ((not en_only) or tweet['lang'] == 'en') :
 			user_name = tweet['user']['screen_name'] 
+			user_id = tweet['user']['id']
 			retweet_count = tweet['retweet_count'] #if tweet['retweeted'] else 0
 			favorite_count = tweet['favorite_count'] #if tweet['favorited'] else 0
-			text = tweet['text']	
+			text = tweet['text']
+			tweet_id = tweet['id']	
 
 			if text not in text_set:
 				text_set.add(text)
@@ -23,7 +25,9 @@ def simple_search(twitter, topic, total=100, en_only=True):
 				search_results_dict[(user_name, \
 					retweet_count, \
 					favorite_count, \
-					text)] = retweet_count+favorite_count
+					text, \
+					tweet_id, \
+					user_id)] = retweet_count+favorite_count
 
 	return reversed(\
 		sorted(search_results_dict.items(), \
