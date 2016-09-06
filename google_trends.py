@@ -1,7 +1,6 @@
 import requests
 import json
-import time
-from time import gmtime, strftime
+from time import gmtime, strftime, sleep
 
 def get_top_trends(country_name):
 	f_country_to_code = open('country_to_code.json', 'r')
@@ -34,10 +33,10 @@ def get_top_trends(country_name):
 	return trends_json
 
 
-def get_hourly_google_trends(country_name):
+def get_timely_google_trends(country_name, time_interval):
 	while True:
 		print(strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()))
 		# Get and print trends
 		print(get_top_trends(country_name))
 		# Sleep for an hour
-		time.sleep(60*60)
+		sleep(time_interval)

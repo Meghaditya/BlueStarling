@@ -24,7 +24,7 @@ from twit_machine import follow
 from twit_machine import auto_tweet_dynamic_trend
 
 # an experimental one
-from google_trends import get_hourly_google_trends
+from google_trends import get_timely_google_trends
 
 # Initialize Twython with twitter credentials
 # common code used by all path
@@ -38,7 +38,7 @@ mode_text = 'Enter mode :\n' + \
 			'3. Get Hourly Twitter Trends in Any Country\n' + \
 			'4. Get 100 tweets about topic\n' + \
 			'5. Start Dynamic Trend TwitMachine\n' + \
-			'6. Start Google Trend TwitMachine\n' + \
+			'6. Get timely Google Search Trends\n' + \
 			'7. Test simple retweet and follow\n' + \
 			'Your Choice : '
 
@@ -76,10 +76,11 @@ elif mode == 5:
 	auto_tweet_dynamic_trend(twitter, \
 		get_trends_from_places(twitter, [c_name_5], []))
 
-# Get Hourly Google Trends in Any Country
+# Get timely Google Search Trends
 elif mode == 6:
 	c_name_6 = custom_prompt('Enter country name: ')
-	get_hourly_google_trends(c_name_6)
+	t_interval = custom_prompt('Enter time interval minutes: ')
+	get_timely_google_trends(c_name_6, 60*int(t_interval))
 
 # Test simple retweet and follow
 elif mode == 7:
