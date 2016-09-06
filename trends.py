@@ -70,7 +70,7 @@ def get_trends(twitter, places_list):
 		print('Getting the trends for ', place['name'])
 		
 		for trend in trends_for_place[0]['trends']:
-			print(trend)
+			print(trend['name'])
 			if trend['name'] in trends_of_ineterest:
 				oldCount = trends_of_ineterest[trend['name']]
 				trends_of_ineterest[trend['name']] = oldCount + 1
