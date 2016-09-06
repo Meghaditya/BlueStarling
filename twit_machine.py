@@ -1,8 +1,7 @@
 from random import randint
 from twython import Twython, TwythonError
-from time import gmtime, strftime
+from time import gmtime, strftime, sleep
 from search import simple_search
-import time
 
 def retweet(twitter, search_result):
 	text=search_result[0][3]
@@ -47,6 +46,6 @@ def auto_tweet_dynamic_trend(twitter, trends):
 				j += 1
 				retweet(twitter, search_result)
 				follow(twitter, search_result)
-				wait_time = random.randint(TWEET_INTERVAL_LOWER_BOUND, TWEET_INTERVAL_UPPER_BOUND)
-				time.sleep(wait_time)
+				wait_time = randint(TWEET_INTERVAL_LOWER_BOUND, TWEET_INTERVAL_UPPER_BOUND)
+				sleep(wait_time)
 		print('-------------')
