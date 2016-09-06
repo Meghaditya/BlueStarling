@@ -1,5 +1,7 @@
 import requests
 import json
+import time
+from time import gmtime, strftime
 
 def get_top_trends(country_name):
 	f_country_to_code = open('country_to_code.json', 'r')
@@ -13,13 +15,13 @@ def get_top_trends(country_name):
 		print('Country Code doesn\'t exist')
 	else:
 		country_code = country_to_code_json[country_name.upper()]
-		print('Country code = ', country_code)
+		#print('Country code = ', country_code)
 		
 		if country_code not in code_to_id_json.keys():
 			print('Country Id doesn\'t exist')
 		else:		
 			country_id = code_to_id_json[country_code]
-			print('Country id = ', country_id)
+			#print('Country id = ', country_id)
 
 			r = requests.get('http://hawttrends.appspot.com/api/terms/')
 			if (r.status_code == 200):
@@ -30,3 +32,12 @@ def get_top_trends(country_name):
 				print('Status Code = ', r.status_code)
 
 	return trends_json
+
+
+def get_hourly_google_trends(country_name):
+	while True:
+		print(strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()))
+		# Get and print trends
+		print(get_top_trends(country_name))
+		# Sleep for an hour
+		time.sleep(60*60)

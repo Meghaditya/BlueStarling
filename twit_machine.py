@@ -1,10 +1,10 @@
-import time
-import random
-from time import gmtime, strftime
+from random import randint
 from twython import Twython, TwythonError
+from time import gmtime, strftime
 from search import simple_search
+import time
 
-def retweet(twitter,search_result):
+def retweet(twitter, search_result):
 	text=search_result[0][3]
 	tweet_id=search_result[0][4]
 	try:
@@ -14,7 +14,7 @@ def retweet(twitter,search_result):
 		print(e)
 
 
-def follow(twitter,search_result):
+def follow(twitter, search_result):
 	user_name=search_result[0][0]
 	user_id=search_result[0][5]
 	try:

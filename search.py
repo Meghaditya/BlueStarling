@@ -13,8 +13,8 @@ def simple_search(twitter, topic, total=100, en_only=True):
 		if ((not en_only) or tweet['lang'] == 'en') :
 			user_name = tweet['user']['screen_name'] 
 			user_id = tweet['user']['id']
-			retweet_count = tweet['retweet_count'] #if tweet['retweeted'] else 0
-			favorite_count = tweet['favorite_count'] #if tweet['favorited'] else 0
+			retweet_count = tweet['retweet_count']
+			favorite_count = tweet['favorite_count']
 			text = tweet['text']
 			tweet_id = tweet['id']	
 

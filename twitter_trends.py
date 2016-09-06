@@ -84,3 +84,16 @@ def get_trends(twitter, places_list):
 	return reversed(\
 		sorted(trends_of_ineterest.items(), \
 			key=operator.itemgetter(1)))
+
+
+def get_hourly_twitter_trends(twitter, country_name):
+
+	while True:
+			print('Getting Hourly trend in %s' % country_name)
+			print(strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()))
+			print('-------------')
+			trends = get_trends_from_places(twitter, [country_name], [])
+			for trend in trends:
+				print(trend)
+			print('-------------')
+			time.sleep(60*60)
