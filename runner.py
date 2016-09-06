@@ -16,7 +16,7 @@ twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 mode_text = 'Enter mode :\n' + \
 			'1. Simple Iterative Retweet.\n' + \
 			'2. Clean Profile\n' + \
-			'3. Get Hourly Trends in India\n' + \
+			'3. Get Hourly Trends in Any Country\n' + \
 			'4. Get 100 tweets about topic\n' + \
 			'5. Start Dynamic Trend TwitMachine\n' + \
 			'Your Choice : '
@@ -30,11 +30,12 @@ elif mode == 2:
 	screen_name = custom_prompt('Enter screen name : ')
 	reset_profile(twitter, screen_name)
 elif mode == 3:
+	country_name = custom_prompt('Enter country name : ')
 	while True:
-		print('Getting Hourly trend in India')
+		print('Getting Hourly trend in %s' % country_name)
 		print(strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()))
 		print('-------------')
-		trends = get_trends_from_places(twitter, ['India'], [])
+		trends = get_trends_from_places(twitter, [country_name], [])
 		for trend in trends:
 			print(trend)
 		print('-------------')

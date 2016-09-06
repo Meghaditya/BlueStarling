@@ -67,10 +67,10 @@ def get_trends(twitter, places_list):
 
 		trends_for_place = twitter.get_place_trends(id=place['woeid'])
 		rate_limit_counter -= 1
-		print('Got the trends for ', place['name'])
+		print('Getting the trends for ', place['name'])
 		
 		for trend in trends_for_place[0]['trends']:
-		
+			print(trend)
 			if trend['name'] in trends_of_ineterest:
 				oldCount = trends_of_ineterest[trend['name']]
 				trends_of_ineterest[trend['name']] = oldCount + 1
@@ -78,6 +78,7 @@ def get_trends(twitter, places_list):
 			else:
 				trends_of_ineterest[trend['name']] = 1
 
+		print('----------------------')		
 		time.sleep(60)
 
 	return reversed(\
