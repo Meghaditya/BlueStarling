@@ -14,4 +14,6 @@ The focus of the project is:
 
 The scope of this project is limited to building different backend modules only.
 
+#### Project moved to a private repo. Follow [BlueStarling](https://twitter.com/crusherforce) on twitter to keep updated about the development. Contact [me](mailto://aditya.roychaudhury@gmail.com) for any question.
+
 ###### Photo Courtesy: Wikipedia
